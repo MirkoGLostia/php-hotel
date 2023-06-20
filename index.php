@@ -52,8 +52,12 @@
     ];
     ?>
 
-    <header>
-        <!-- search bar -->
+    <header class="container">
+        <form class="text-center m-3">
+            <label for="park" >Parking space:</label>
+            <input type="radio" name="park">
+            <input type="submit" value="SEARCH">
+        </form>
     </header>
 
     <main class="container">
@@ -70,29 +74,39 @@
             </thead>
             <tbody>
                 <?php
+
+                    $parking = $_GET["park"];
+
                     foreach ($hotels as $hotel) {
-                        echo "<tr>";
 
-                        echo "<th>" . $hotel["name"] . "</th>";
-                
-                        echo "<td>" . $hotel["description"] . "</td>";
+                        if ($parking == $hotel["parking"]) {
+
+                            echo "<tr>";
+
+                            echo "<th>" . $hotel["name"] . "</th>";
+                    
+                            echo "<td>" . $hotel["description"] . "</td>";
+                            
+                            if ($hotel["parking"]) {
+
+                                echo "<td> si </td>";
                         
-                        if ($hotel["parking"]) {
+                            } 
+                            else {
+                        
+                                echo "<td> no </td>";
+                        
+                            };
+                    
+                            echo "<td>" . $hotel["vote"] . "</td>";
+                    
+                            echo "<td>" . $hotel["distance_to_center"] . "</td>";
 
-                            echo "<td> si </td>";
-                    
-                        } 
-                        else {
-                    
-                            echo "<td> no </td>";
-                    
-                        };
-                
-                        echo "<td>" . $hotel["vote"] . "</td>";
-                
-                        echo "<td>" . $hotel["distance_to_center"] . "</td>";
+                            echo "</tr>";
 
-                        echo "</tr>";
+                        }
+
+                        
                     }
                 ?>
             </tbody>
@@ -100,6 +114,10 @@
     </main>
 
     <?php
+
+    echo "<pre>";
+    echo var_dump($parking);
+    echo "</pre>";
 
     
 
