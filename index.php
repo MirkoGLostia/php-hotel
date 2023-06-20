@@ -53,7 +53,7 @@
     ?>
 
     <header class="container">
-        <form class="text-center m-3">
+        <form type="GET" class="text-center m-3">
             <label for="park" >Parking space:</label>
             <input type="radio" name="park">
             <input type="submit" value="SEARCH">
@@ -79,9 +79,9 @@
 
                     foreach ($hotels as $hotel) {
 
+                        echo "<tr>";
+                        
                         if ($parking == $hotel["parking"]) {
-
-                            echo "<tr>";
 
                             echo "<th>" . $hotel["name"] . "</th>";
                     
@@ -102,10 +102,32 @@
                     
                             echo "<td>" . $hotel["distance_to_center"] . "</td>";
 
-                            echo "</tr>";
+                        } 
+                        else if ($parking == "") {
 
+                            echo "<th>" . $hotel["name"] . "</th>";
+                    
+                            echo "<td>" . $hotel["description"] . "</td>";
+                            
+                            if ($hotel["parking"]) {
+
+                                echo "<td> si </td>";
+                        
+                            } 
+                            else {
+                        
+                                echo "<td> no </td>";
+                        
+                            };
+                    
+                            echo "<td>" . $hotel["vote"] . "</td>";
+                    
+                            echo "<td>" . $hotel["distance_to_center"] . "</td>";
+
+                            
                         }
-
+                        
+                        echo "</tr>";
                         
                     }
                 ?>
