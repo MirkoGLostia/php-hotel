@@ -146,15 +146,5 @@
         </table>
     </main>
 
-    <?php
-
-    echo "<pre>";
-    echo var_dump($parking);
-    echo "</pre>";
-
-    
-
-    ?>
-
 </body>
 </html>
