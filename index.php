@@ -56,6 +56,10 @@
         <form type="GET" class="text-center m-3">
             <label for="park" >Parking space:</label>
             <input type="radio" name="park">
+            </br>
+            <label for="vote">Vote</label>
+            <input type="number" min="1" max="5" name="vote" id="vote" size="5">
+            </br>
             <input type="submit" value="SEARCH">
         </form>
     </header>
@@ -77,11 +81,19 @@
 
                     $parking = $_GET["park"];
 
+                    $evaluation = 0;
+
+                    if ($_GET["vote"] != '') {
+
+                        $evaluation = $_GET["vote"];
+
+                    }
+
                     foreach ($hotels as $hotel) {
 
                         echo "<tr>";
                         
-                        if ($parking == $hotel["parking"]) {
+                        if ($parking == $hotel["parking"] && $evaluation <= $hotel["vote"]) {
 
                             echo "<th>" . $hotel["name"] . "</th>";
                     
@@ -103,7 +115,7 @@
                             echo "<td>" . $hotel["distance_to_center"] . "</td>";
 
                         } 
-                        else if ($parking == "") {
+                        else if ($parking == "" && $evaluation <= $hotel["vote"]) {
 
                             echo "<th>" . $hotel["name"] . "</th>";
                     
@@ -123,7 +135,6 @@
                             echo "<td>" . $hotel["vote"] . "</td>";
                     
                             echo "<td>" . $hotel["distance_to_center"] . "</td>";
-
                             
                         }
                         
