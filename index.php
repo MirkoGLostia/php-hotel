@@ -11,6 +11,7 @@
 </head>
 <body>
 
+    <!-- database array -->
     <?php
     $hotels = [
 
@@ -59,7 +60,7 @@
             <input type="radio" name="park">
             </br>
             <label for="vote">Vote</label>
-            <input type="number" min="1" max="5" name="vote" id="vote" size="5">
+            <input type="number" min="1" max="5" name="vote" size="5">
             </br>
             <input type="submit" value="SEARCH">
         </form>
@@ -79,10 +80,11 @@
             </thead>
             <tbody>
                 <?php
+                    
 
                     $parking = $_GET["park"];
 
-                    $evaluation = 0;
+                    $evaluation = 1;
 
                     if ($_GET["vote"] != '') {
 
@@ -95,47 +97,15 @@
                         echo "<tr>";
                         
                         if ($parking == $hotel["parking"] && $evaluation <= $hotel["vote"]) {
-
-                            echo "<th>" . $hotel["name"] . "</th>";
-                    
-                            echo "<td>" . $hotel["description"] . "</td>";
                             
-                            if ($hotel["parking"]) {
-
-                                echo "<td> si </td>";
-                        
-                            } 
-                            else {
-                        
-                                echo "<td> no </td>";
-                        
-                            };
-                    
-                            echo "<td>" . $hotel["vote"] . "</td>";
-                    
-                            echo "<td>" . $hotel["distance_to_center"] . "</td>";
+                            // componente
+                            include "./tableRow.component.php";
 
                         } 
                         else if ($parking == "" && $evaluation <= $hotel["vote"]) {
 
-                            echo "<th>" . $hotel["name"] . "</th>";
-                    
-                            echo "<td>" . $hotel["description"] . "</td>";
-                            
-                            if ($hotel["parking"]) {
-
-                                echo "<td> si </td>";
-                        
-                            } 
-                            else {
-                        
-                                echo "<td> no </td>";
-                        
-                            };
-                    
-                            echo "<td>" . $hotel["vote"] . "</td>";
-                    
-                            echo "<td>" . $hotel["distance_to_center"] . "</td>";
+                            // componente
+                            include "./tableRow.component.php";
                             
                         }
                         
