@@ -58,7 +58,7 @@
 
     <main class="container">
         <!-- tabella con elenco di hotel -->
-        <table class="table">
+        <table class="table table-bordered">
             <thead>
                 <tr>
                     <th scope="col">Name</th>
@@ -76,8 +76,17 @@
                         echo "<th>" . $hotel["name"] . "</th>";
                 
                         echo "<td>" . $hotel["description"] . "</td>";
-                
-                        echo "<td>" . $hotel["parking"] . "</td>";
+                        
+                        if ($hotel["parking"]) {
+
+                            echo "<td> si </td>";
+                    
+                        } 
+                        else {
+                    
+                            echo "<td> no </td>";
+                    
+                        };
                 
                         echo "<td>" . $hotel["vote"] . "</td>";
                 
@@ -89,6 +98,12 @@
             </tbody>
         </table>
     </main>
+
+    <?php
+
+    
+
+    ?>
 
 </body>
 </html>
