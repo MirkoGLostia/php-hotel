@@ -57,7 +57,11 @@
     <header class="container">
         <form type="GET" class="text-center m-3">
             <label for="park" >Parking space:</label>
-            <input type="radio" name="park">
+            <br/>
+            <input type="radio" name="park" id="park_yes" value="yes">
+            <label for="park_yes" >yes</label>
+            <input type="radio" name="park" id="park_no" value="no">
+            <label for="park_no" >no</label>
             </br>
             <label for="vote">Vote</label>
             <input type="number" min="1" max="5" name="vote" size="5">
@@ -84,7 +88,7 @@
 
                     $parking = $_GET["park"];
 
-                    $evaluation = 1;
+                    $evaluation = 0;
 
                     if ($_GET["vote"] != '') {
 
@@ -96,18 +100,12 @@
 
                         echo "<tr>";
                         
-                        if ($parking == $hotel["parking"] && $evaluation <= $hotel["vote"]) {
+                        if (($parking === 'yes' && $hotel["parking"]  || $parking === "no" && !$hotel["parking"]  || $parking === null) && $evaluation <= $hotel["vote"]) {
                             
                             // componente
                             include "./tableRow.component.php";
 
                         } 
-                        else if ($parking == "" && $evaluation <= $hotel["vote"]) {
-
-                            // componente
-                            include "./tableRow.component.php";
-                            
-                        }
                         
                         echo "</tr>";
                         
